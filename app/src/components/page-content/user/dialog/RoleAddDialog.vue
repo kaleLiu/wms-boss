@@ -76,6 +76,8 @@
             },
             clickSubmitButton() {
                 let api = this.editId ? Api.role_auth.roleUpdate : Api.role_auth.roleInsert;
+                //let res = this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys())
+                //console.log('xxxxxxxxxxxx'+res)
                 this.$ajax.request(api, this.role)
                     .then(resp => {
                         DialogUtil.toastSuccess(resp);

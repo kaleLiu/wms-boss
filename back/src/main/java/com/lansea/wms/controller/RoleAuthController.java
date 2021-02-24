@@ -76,6 +76,12 @@ public class RoleAuthController {
         if (result.hasErrors()) {
             return Result.errorByBindingResult(result);
         }
+        if (role.getAuths().isEmpty()) {
+            return Result.error("请选择权限");
+        }
+        if (roleService.getRole(role.getName()) != null) {
+            return Result.error("该角色已存在");
+        }
         role.setCreateUid(userService.getLoginUser().getId());
         roleMapper.insert(role);
         roleAuthMapper.insertAll(roleAuthService.createList(role));
