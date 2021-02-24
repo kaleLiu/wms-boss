@@ -56,6 +56,12 @@ export default {
         roleUpdate: ['/role_auth/role_update', 'post'],
 
     },
+
+    // 菜单
+    menu: {
+        menuList: ['/menu/list', 'get']
+    },
+
     // 部门
     depart: {
         list: ['/depart/list', 'get'],

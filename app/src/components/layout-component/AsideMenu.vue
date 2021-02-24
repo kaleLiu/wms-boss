@@ -12,29 +12,29 @@
                 :collapse="!$store.state.asideIsExpend"
         >
             <template v-for="( item) in menu">
-                <el-submenu :index="item.path" v-if="hasChild(item) && needShow(item)"
-                    :key="item.path"
+                <el-submenu :index="item.url" v-if="hasChild(item) && needShow(item)"
+                    :key="item.url"
                 >
                     <template slot="title">
-                        <i :class="item.meta.icon"></i>
-                        <span slot="title">{{item.meta.title}}</span>
+                        <i :class="item.icon"></i>
+                        <span slot="title">{{item.name}}</span>
                     </template>
                     <el-menu-item
-                            v-for="(child,i) in item.children"
-                            :key="i"
-                            :index="child.path"
+                            v-for="child in item.children"
+                            :key="child.id"
+                            :index="child.url"
                             @click.native="clickLink(child)"
                     >
-                        <i class="iconfont" :class="child.meta.icon"></i>
-                        <span slot="title">{{ child.meta.title }}</span>
+                        <i class="iconfont" :class="child.icon"></i>
+                        <span slot="title">{{ child.name }}</span>
                     </el-menu-item>
                 </el-submenu>
-                <el-menu-item :index="item.path" v-if="!hasChild(item) && needShow(item)"
-                              :key="item.path"
+                <el-menu-item :index="item.url" v-if="!hasChild(item) && needShow(item)"
+                              :key="item.url"
                               @click.native="clickLink(item)"
                 >
-                    <i :class="item.meta.icon"></i>
-                    <span slot="title">{{ item.meta.title}}</span>
+                    <i :class="item.icon"></i>
+                    <span slot="title">{{ item.name}}</span>
                 </el-menu-item>
             </template>
         </el-menu>
@@ -44,6 +44,8 @@
 <script>
     import aside_menu from "@/router/aside_menu";
     import Windows from "@/project/var/Windows";
+    import Api from "@/assets/api/Api";
+    import UserHandle from "@/project/user/UserHandle";
 
     export default {
         name: "AsideMenu",
@@ -51,7 +53,7 @@
         props: {},
         data() {
             return {
-                menu: aside_menu,
+                menu: null,
             }
         },
         mounted() {
@@ -61,12 +63,19 @@
         },
         methods: {
             reload() {
+                this.$ajax.request(Api.menu.menuList, {
+                    roleId: UserHandle.getLoginUser().roleId
+                })
+                    .then(resp => {
+                        this.menu = resp;
+                    })
             },
             hasChild(route) {
                 return route.children && route.children.length > 0;
             },
             needShow(route) {
-                return !route.meta.hidden
+                //return !route.meta.hidden
+                return true;
             },
             clickLink(router) {
                 Windows.set(router);

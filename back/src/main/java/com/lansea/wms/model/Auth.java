@@ -21,6 +21,9 @@ public class Auth extends SerializeBase {
     @Length(min = 2, max = 100, message = "url长度为 2-100")
     private String url;
 
+    private String type;
+
+    private String icon;
 
     public Integer getId() {
         return id;
@@ -54,4 +57,19 @@ public class Auth extends SerializeBase {
         this.url = url;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }

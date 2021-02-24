@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lansea.wms.mapper.MenuMapper">
+    <!-- 根据条件查询 -->
+    <select id="selectWhere" resultType="com.lansea.wms.model.Menu">
+        select
+        *
+        from menu
+        <where>
+            <if test="menu.state != null and menu.state != ''">
+                t.name = #{menu.state}
+            </if>
+        </where>
+        <include refid="com.lansea.wms.mapper.base.TempMapper.sort"></include>
+    </select>
+</mapper>
