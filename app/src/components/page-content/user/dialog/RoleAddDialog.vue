@@ -71,13 +71,24 @@
                 }).then(resp => {
                     this.role = resp;
                     this.role.auths = this.role.auths || [];
-                    this.$refs.tree.setCheckedKeys(this.role.auths.map(x => x.id));
+                    let authPids = Array.from(new Set(this.role.auths.map(x => x.pid)));
+                    // let removedIds = this.role.auths.map((item) =>{
+                    //      if (item.type === 'menu' && authPids.includes(item.id)) {
+                    //          return item.id;
+                    //      }
+                    // }).filter(i => i !== undefined);
+                    // let auths = this.role.auths;
+                    // removedIds.forEach(function(val,index){
+                    //    auths.splice(auths.findIndex(item => item.id === val), 1)
+                    // })
+                    let auths = this.role.auths.filter(item => !(item.type === 'menu' && authPids.includes(item.id)));
+                    this.$refs.tree.setCheckedKeys(auths.map(x => x.id));
                 })
             },
             clickSubmitButton() {
                 let api = this.editId ? Api.role_auth.roleUpdate : Api.role_auth.roleInsert;
-                //let res = this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys())
-                //console.log('xxxxxxxxxxxx'+res)
+                let checkedNodes = this.$refs.tree.$refs.tree.getCheckedNodes().concat(this.$refs.tree.$refs.tree.getHalfCheckedNodes());
+                this.role.auths = checkedNodes;
                 this.$ajax.request(api, this.role)
                     .then(resp => {
                         DialogUtil.toastSuccess(resp);

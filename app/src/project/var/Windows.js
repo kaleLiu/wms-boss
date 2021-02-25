@@ -28,7 +28,7 @@ export default {
         }
         const nodes = arr.filter(item => item.meta.title === route.name);
         this.list = this.list.concat(nodes);
-        console.log(this.list);
+        //console.log(this.list);
         this.selectedName = route.name;
     },
 
