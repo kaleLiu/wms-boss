@@ -25,6 +25,8 @@ public class Auth extends SerializeBase {
 
     private String icon;
 
+    private String state;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class Auth extends SerializeBase {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

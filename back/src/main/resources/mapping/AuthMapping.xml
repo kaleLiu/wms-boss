@@ -20,7 +20,7 @@
     <select id="selectAll" resultType="com.lansea.wms.model.Auth">
         select * from auth
         <if test="pid != null">
-            where pid = #{pid}
+            where pid = #{pid} and state = 'enable'
         </if>
     </select>
     <!-- 根据角色 id 查找权限 -->
