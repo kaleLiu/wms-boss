@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lansea.wms.mapper.LoginRecordMapper">
+<mapper namespace="com.gct.wms.mapper.LoginRecordMapper">
 
     <sql id="selectBase">
         select
@@ -15,7 +15,7 @@
         insert into login_record(ip, uid, type, create_time)
         values (#{form.ip} , #{form.uid}, #{param1.type} , now())
     </insert>
-    <select id="selectWhere" resultType="com.lansea.wms.model.LoginRecord">
+    <select id="selectWhere" resultType="com.gct.wms.model.LoginRecord">
         <include refid="selectBase"></include>
         <where>
             <if test="form.ip != null and form.ip != ''">
@@ -34,6 +34,6 @@
                 and t.create_time &lt;= #{form.endTime}
             </if>
         </where>
-        <include refid="com.lansea.wms.mapper.base.TempMapper.sort"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.sort"></include>
     </select>
 </mapper>

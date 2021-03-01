@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lansea.wms.mapper.StockEntryMapper">
+<mapper namespace="com.gct.wms.mapper.StockEntryMapper">
 
     <sql id="selectBase">
         select
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserFields"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserFields"></include>
         ,
         ( select count(id) num from move where move.stock_entry_id = t.id and move.is_del is null ) moveCount,
         cpy.name companyName ,
@@ -12,7 +12,7 @@
         cty.name categoryName,
         appr_u.real_name approve_user_name
         from stock_entry t
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserJoin"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserJoin"></include>
         left join company cpy on cpy.id = t.company_id
         left join category cty on cty.id = t.category_id
         left join `user` appr_u on appr_u.id = t.approve_uid
@@ -45,7 +45,7 @@
         where id = #{form.id}
     </update>
     <!-- 条件查询 -->
-    <select id="selectWhere" resultType="com.lansea.wms.model.StockEntry">
+    <select id="selectWhere" resultType="com.gct.wms.model.StockEntry">
         <include refid="selectBase"></include>
         <where>
             <if test="form.number != null and form.number != ''">
@@ -74,9 +74,9 @@
             </if>
             and t.is_del is null
         </where>
-        <include refid="com.lansea.wms.mapper.base.TempMapper.sortNoT"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.sortNoT"></include>
     </select>
-    <select id="findById" resultType="com.lansea.wms.model.StockEntry">
+    <select id="findById" resultType="com.gct.wms.model.StockEntry">
         <include refid="selectBase"></include>
         where t.id = #{id} and t.is_del is null
     </select>

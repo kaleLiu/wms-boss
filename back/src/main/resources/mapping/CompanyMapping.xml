@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lansea.wms.mapper.CompanyMapper">
+<mapper namespace="com.gct.wms.mapper.CompanyMapper">
 
     <sql id="fieldBase">
         code, category, name, address, contact_name, phone, mobile, email, remark, create_uid, create_time
@@ -31,13 +31,13 @@
 
 
     <!-- 根据 id 查找-->
-    <select id="findById" resultType="com.lansea.wms.model.Company">
+    <select id="findById" resultType="com.gct.wms.model.Company">
         <include refid="selectBase"></include>
         where t.id = #{id} and t.is_del is null
     </select>
 
     <!-- 条件查询 -->
-    <select id="selectWhere" resultType="com.lansea.wms.model.Company">
+    <select id="selectWhere" resultType="com.gct.wms.model.Company">
 
         <include refid="selectBase"></include>
         <where>
@@ -64,7 +64,7 @@
             </if>
             and t.is_del is null
         </where>
-        <include refid="com.lansea.wms.mapper.base.TempMapper.sort"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.sort"></include>
 
     </select>
 
@@ -87,7 +87,7 @@
             id = #{company.id}
     </update>
     <!-- 根据 category 查询所有-->
-    <select id="selectByCategory" resultType="com.lansea.wms.model.Company">
+    <select id="selectByCategory" resultType="com.gct.wms.model.Company">
         select * from company
         <where>
             <if test="category != null and category != 0">

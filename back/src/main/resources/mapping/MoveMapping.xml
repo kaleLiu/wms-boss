@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lansea.wms.mapper.MoveMapper">
+<mapper namespace="com.gct.wms.mapper.MoveMapper">
 
     <sql id="selectBase">
         select
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserWarehouseField"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserWarehouseField"></include>
         ,
         mtl.id material_id ,
         mtl.code material_code,
@@ -28,7 +28,7 @@
         ( select name from category where id = mtl.category_id ) material_category_name ,
         ( select name from category where id = mtl.unit_id ) material_unit_name
         from move t
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserJoin"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserJoin"></include>
         left join inventory ity on ity.id = t.inventory_id
         left join inventory ity_t on ity_t.id = t.inventory_tid
         left join material mtl on mtl.id = t.material_id
@@ -42,7 +42,7 @@
         left join stock_entry stk_e on stk_e.id = t.stock_entry_id
         left join stock_trans stk_ts on stk_ts.id = t.stock_trans_id
     </sql>
-    <select id="selectWhere" resultType="com.lansea.wms.model.Move">
+    <select id="selectWhere" resultType="com.gct.wms.model.Move">
         <include refid="selectBase"></include>
         <where>
             <if test="move.type != null and move.type != 0">
@@ -80,9 +80,9 @@
             </if>
             and t.is_del is null
         </where>
-        <include refid="com.lansea.wms.mapper.base.TempMapper.sortNoT"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.sortNoT"></include>
     </select>
-    <select id="findById" resultType="com.lansea.wms.model.Move">
+    <select id="findById" resultType="com.gct.wms.model.Move">
         <include refid="selectBase"></include>
         where t.id = #{id} and t.is_del is null
     </select>
@@ -113,7 +113,7 @@
         </set>
         where id = #{move.id}
     </update>
-    <select id="selectByStockEntryId" resultType="com.lansea.wms.model.Move">
+    <select id="selectByStockEntryId" resultType="com.gct.wms.model.Move">
         <include refid="selectBase"></include>
         where t.stock_entry_id = #{stockEntryId} and t.is_del is null
     </select>
@@ -154,7 +154,7 @@
         </set>
         where id = #{param1.id}
     </update>
-    <select id="selectByStockTransId" resultType="com.lansea.wms.model.Move">
+    <select id="selectByStockTransId" resultType="com.gct.wms.model.Move">
         <include refid="selectBase"></include>
         where t.stock_trans_id = #{stockTransId} and t.is_del is null
     </select>

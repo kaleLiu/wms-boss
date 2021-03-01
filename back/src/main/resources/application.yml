@@ -6,7 +6,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   datasource:
-    name: lansea
+    name: gct
     url: jdbc:mysql://139.199.61.215:3306/dev-wm?useUnicode=true&characterEncoding=utf-8
     username: root
     password: abcd123
@@ -34,7 +34,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.lansea.wms.model
+  type-aliases-package: com.gct.wms.model
   configuration:
     mapUnderscoreToCamelCase: true
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

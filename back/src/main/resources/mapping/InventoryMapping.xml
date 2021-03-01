@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lansea.wms.mapper.InventoryMapper">
+<mapper namespace="com.gct.wms.mapper.InventoryMapper">
 
     <sql id="selectBase">
         select
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserWarehouseField"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserWarehouseField"></include>
         ,
         mtl.code material_code,
         mtl.name material_name,
         cty.name mtl_unit_name
         from inventory t
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserWarehouseJoin"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserWarehouseJoin"></include>
         left join material mtl on mtl.id = t.material_id
         left join category cty on cty.id = mtl.unit_id
     </sql>
-    <select id="selectWhere" resultType="com.lansea.wms.model.Inventory">
+    <select id="selectWhere" resultType="com.gct.wms.model.Inventory">
         <include refid="selectBase"></include>
         <where>
             <if test="form.materialCode != null and form.materialCode != ''">
@@ -23,11 +23,11 @@
             <if test="form.materialName != null and form.materialName != ''">
                 and mtl.name like '%${form.materialName}%'
             </if>
-            <include refid="com.lansea.wms.mapper.base.TempMapper.whereWarehouse"></include>
+            <include refid="com.gct.wms.mapper.base.TempMapper.whereWarehouse"></include>
         </where>
-        <include refid="com.lansea.wms.mapper.base.TempMapper.sort"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.sort"></include>
     </select>
-    <select id="findById" resultType="com.lansea.wms.model.Inventory">
+    <select id="findById" resultType="com.gct.wms.model.Inventory">
         <include refid="selectBase"></include>
         where t.id = #{id} and t.is_del is null
         limit 1
@@ -54,7 +54,7 @@
         </set>
         where id = #{param1.id}
     </update>
-    <select id="findByMove" resultType="com.lansea.wms.model.Inventory">
+    <select id="findByMove" resultType="com.gct.wms.model.Inventory">
         select * from inventory
         where
         warehouse_id = #{move.warehouseId}
@@ -99,7 +99,7 @@
             </if>
         </where>
     </update>
-    <select id="findByMtlAndStk" resultType="com.lansea.wms.model.Inventory">
+    <select id="findByMtlAndStk" resultType="com.gct.wms.model.Inventory">
         <include refid="selectBase"></include>
         where t.material_id = #{form.materialId} and t.stock_id = #{param1.stockId} and t.is_del is null and t.quantity
         > 0

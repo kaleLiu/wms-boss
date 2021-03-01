@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lansea.wms.mapper.AuthMapper">
+<mapper namespace="com.gct.wms.mapper.AuthMapper">
 
     <!-- 添加 -->
     <insert id="insert">
@@ -17,23 +17,23 @@
         where id=#{auth.id}
     </update>
     <!-- 查找所有 -->
-    <select id="selectAll" resultType="com.lansea.wms.model.Auth">
+    <select id="selectAll" resultType="com.gct.wms.model.Auth">
         select * from auth
         <if test="pid != null">
             where pid = #{pid} and state = 'enable'
         </if>
     </select>
     <!-- 根据角色 id 查找权限 -->
-    <select id="selectAllByRoleId" resultType="com.lansea.wms.model.Auth">
+    <select id="selectAllByRoleId" resultType="com.gct.wms.model.Auth">
         select t.* from auth t
         where id in (
             select r.auth_id from role_auth r where r.role_id = #{roleId}
         )
     </select>
-    <select id="findByName" resultType="com.lansea.wms.model.Auth">
+    <select id="findByName" resultType="com.gct.wms.model.Auth">
         select * from auth where url like '${name}%' limit 1
     </select>
-    <select id="findByUserAndAuthName" resultType="com.lansea.wms.model.Auth">
+    <select id="findByUserAndAuthName" resultType="com.gct.wms.model.Auth">
         select t.* from auth t
         inner join role_auth ra on ra.auth_id = t.id
         inner join user u on u.role_id = ra.role_id

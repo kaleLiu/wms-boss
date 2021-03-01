@@ -35,5 +35,5 @@ Class-Path: thymeleaf-spring5-3.0.11.RELEASE.jar spring-beans-5.1.7.RE
  P-3.2.0.jar javax.annotation-api-1.3.2.jar spring-boot-starter-loggin
  g-2.1.5.RELEASE.jar tomcat-embed-el-9.0.19.jar spring-expression-5.1.
  7.RELEASE.jar springfox-core-2.6.1.jar
-Main-Class: com.lansea.wms.WmsApplication
+Main-Class: com.gct.wms.WmsApplication
 

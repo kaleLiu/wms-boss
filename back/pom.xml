@@ -8,11 +8,11 @@
         <version>2.1.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.lansea</groupId>
+    <groupId>com.gct</groupId>
     <artifactId>wms</artifactId>
     <version>1.0.0</version>
     <name>wms</name>
-    <description>lansea wms</description>
+    <description>GCT-WMS</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -112,7 +112,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.lansea.wms.WmsApplication</mainClass>
+                    <mainClass>com.gct.wms.WmsApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

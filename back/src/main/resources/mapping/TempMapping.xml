@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lansea.wms.mapper.base.TempMapper">
+<mapper namespace="com.gct.wms.mapper.base.TempMapper">
 
     <sql id="sort">
         <if test="sort.sortField != null and sort.sortField != ''">
@@ -37,28 +37,28 @@
     </sql>
 
     <sql id="selectUserWarehouseField">
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserFields"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserFields"></include>
         ,
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectWareFields"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectWareFields"></include>
     </sql>
 
     <sql id="selectUserWarehouseJoin">
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserJoin"></include>
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectWareJoin"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserJoin"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectWareJoin"></include>
     </sql>
 
     <sql id="selectUserWarehouse">
         select
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserWarehouseField"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserWarehouseField"></include>
         from ${tableName} t
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserWarehouseJoin"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserWarehouseJoin"></include>
     </sql>
 
     <sql id="selectUserBase">
         select
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserFields"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserFields"></include>
         from ${tableName} t
-        <include refid="com.lansea.wms.mapper.base.TempMapper.selectUserJoin"></include>
+        <include refid="com.gct.wms.mapper.base.TempMapper.selectUserJoin"></include>
     </sql>
 
     <sql id="whereWarehouse">
