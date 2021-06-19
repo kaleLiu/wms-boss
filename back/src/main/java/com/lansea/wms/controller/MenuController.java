@@ -48,7 +48,7 @@ public class MenuController {
     @GetMapping(value = "/list")
     @ApiOperation(value = "菜单列表", notes = "接口")
     Result list(Integer roleId) {
-        List<Auth> list = authService.selectAllByRoleId(roleId).stream().filter(x->"menu".equals(x.getType())).collect(Collectors.toList());
+        List<Auth> list = authService.selectAllByRoleId(roleId).stream().filter(x->"menu".equals(x.getType()) && "enable".equals(x.getState())).collect(Collectors.toList());
         List<MenuTreeNode> menuTreeNodes = list.stream().map(i->{
             MenuTreeNode menuTreeNode = BeanHelper.copyProperties(i, MenuTreeNode.class);
             return menuTreeNode;

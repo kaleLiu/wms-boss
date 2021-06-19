@@ -8,6 +8,7 @@ spring:
   datasource:
     name: lansea
     url: jdbc:mysql://139.199.61.215:3306/dev-wm?useUnicode=true&characterEncoding=utf-8
+    #url: jdbc:mysql://localhost:3306/wms-boss?useUnicode=true&characterEncoding=utf-8
     username: root
     password: abcd123
     type: com.alibaba.druid.pool.DruidDataSource
